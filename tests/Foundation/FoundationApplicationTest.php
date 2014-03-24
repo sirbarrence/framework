@@ -37,6 +37,25 @@ class FoundationApplicationTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue(in_array($class, $app->getLoadedProviders()));
 	}
 
+	/**
+	 * @expectedException \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+	 * @expectedExceptionCode 404
+	 */
+	public function testAbortCode404MatchesExpectedExceptionCode()
+	{
+		$app = new Application;
+		$app->abort(404);
+	}
+
+	/**
+	 * @expectedException \Symfony\Component\HttpKernel\Exception\HttpException
+	 * @expectedExceptionCode 403
+	 */
+	public function testAbortCode40xMatchesExpectedExceptionCode()
+	{
+		$app = new Application;
+		$app->abort(403);
+	}
 }
 
 class ApplicationCustomExceptionHandlerStub extends Illuminate\Foundation\Application {

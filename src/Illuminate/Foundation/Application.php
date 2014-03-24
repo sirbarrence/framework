@@ -868,11 +868,11 @@ class Application extends Container implements HttpKernelInterface, TerminableIn
 	{
 		if ($code == 404)
 		{
-			throw new NotFoundHttpException($message);
+			throw new NotFoundHttpException($message, null, $code);
 		}
 		else
 		{
-			throw new HttpException($code, $message, null, $headers);
+			throw new HttpException($code, $message, null, $headers, $code);
 		}
 	}
 
